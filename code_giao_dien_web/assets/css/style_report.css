@@ -1,0 +1,349 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ebffdc;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a6f8ba;
+    padding: 5px 20px;
+    height: 100px;
+}
+
+/* Căn chỉnh logo và dòng chữ */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container a img {
+    height: 60px;
+    margin-right: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-container a:hover img {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.logo-text {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    font-family: serif, monospace;
+    font-weight: bold;
+}
+
+/* Menu styles - Modified to align right */
+.menu {
+    display: flex;
+    gap: 0px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    /* Push menu to the right */
+    justify-content: flex-end;
+    /* Align items to the right */
+}
+
+.menu a.active,
+.subnav .subnavbtn.active {
+    color: white;
+    background-color: #11d352;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu a,
+.subnav .subnavbtn {
+    font-size: 17px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 10px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+.menu a:hover,
+.subnav .subnavbtn:hover {
+    background-color: #11d352;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu a i,
+.subnav .subnavbtn i {
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+/* Subnav container */
+.subnav {
+    position: relative;
+    display: inline-block;
+}
+
+/* Subnav button */
+.subnav .subnavbtn {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Style the subnav content - positioned absolute */
+.subnav-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Style the subnav links */
+.subnav-content a {
+    font-size: 13px;
+    color: #333;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add a background color on hover */
+.subnav-content a:hover {
+    background-color: #f1f1f1;
+    color: #4CAF50;
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+    display: block;
+}
+
+/* Hiệu ứng mũi tên khi hover */
+.subnavbtn i.fa-caret-down {
+    transition: transform 0.3s ease;
+}
+
+.subnav:hover .subnavbtn i.fa-caret-down {
+    transform: rotate(180deg);
+}
+
+/* Modified user role container */
+.user-role-container {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    /* Space between last menu item and user role */
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #555;
+}
+
+.user-role-container i {
+    margin-right: 5px;
+    color: #007bff;
+}
+
+#user-station {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* ----------------------------------------------------------------- */
+/* -------------------------- MAIN CONTENT ------------------------- */
+
+/* Container chính */
+.container {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+
+}
+
+main {
+    margin-top: 10px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 150px;
+    text-align: right;
+}
+
+select,
+input[type="text"] {
+    padding: 8px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+select:focus,
+input[type="text"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+button {
+    padding: 8px 16px;  /* Reduced padding */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 8px 5px;  /* Reduced margin */
+    font-size: 13px;  /* Smaller font size */
+}
+
+/* Add new container for buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#line-charts-container {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.chart-wrapper {
+    margin-bottom: 40px;
+}
+
+.chart-wrapper h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+canvas {
+    max-width: 100%;
+    height: 400px !important;
+    /* Đảm bảo chiều cao cố định cho mỗi biểu đồ */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.roboto-custom {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400; /* Có thể thay đổi từ 100 đến 900 */
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+/* Thêm vào file CSS để định dạng mức độ cảnh báo */
+.alert-high {
+    color: red;
+    font-weight: bold;
+}
+
+.alert-medium {
+    color: orange;
+}
+
+.alert-low {
+    color: green;
+}

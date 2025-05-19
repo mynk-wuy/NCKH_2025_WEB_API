@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan ly thiet bị</title>
+    <link rel="stylesheet" href="../assets/css/style_quanlydevice.css"> <!-- Liên kết tới file CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <a href="menu.html">
+                <img src="Logo-Dai-Hoc-Giao-Thong-Van-Tai-UTC.webp" alt="Logo">
+            </a>
+            <span class="logo-text">HỆ THỐNG GIÁM SÁT CHẤT LƯỢNG KHÍ THẢI</span>
+        </div>
+        <!-- Menu -->
+        <nav class="menu">
+            <a href="home.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-eye"></i> Giám sát <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="giamsat1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="giamsat2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-cogs"></i> Điều khiển <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="dieukhien1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="dieukhien2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn" id="user-link"><i class="fas fa-user-cog"></i> Quản lý <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="quanlyuser.html">Người dùng</a>
+                    <a href="device.html">Thiết bị</a>
+                    <a href="report.html">Báo cáo</a>
+                </div>
+            </div>
+            <a href="alert.html"><i class="fas fa-exclamation-triangle"></i> Cảnh báo</a>
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            <div class="user-role-container">
+                <i class="fas fa-user-tag"></i>
+                <span id="user-role"></span>              
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="container">
+        <main>
+            <h1>Quản lý thiết bị</h1>
+            <div class="sensor-management">
+                <!-- Thanh tìm kiếm và nút thêm -->
+                <div class="controls">
+                    <input type="text" id="search" placeholder="Tìm kiếm id cảm biến hoặc tên cảm biến...">
+                    <button id="add-sensor-btn" class="add-sensor-btn">Thêm cảm biến</button>
+                </div>
+
+
+                <!-- Bảng danh sách cảm biến -->
+                <table id="sensor-table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>ID Cảm biến</th>
+                            <th>Tên cảm biến</th>
+                            <th>Vị trí</th>
+                            <th>Loại cảm biến</th>
+                            <th>Ngày tạo</th>
+                            <th>Ngưỡng cảnh báo</th>
+                            <th>Đơn vị</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sensor-list">
+                        <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                    </tbody>
+                </table>
+                <!-- Modal thêm cảm biến -->
+                <div id="add-sensor-modal" class="modal">
+                    <div class="modal-content">
+                        <h2>Thêm cảm biến</h2>
+                        <form id="add-sensor-form">
+                            <label>ID Cảm biến:</label>
+                            <input type="text" id="sensor-id" required>
+                            <label>Tên cảm biến:</label>
+                            <input type="text" id="sensor-name" required>
+                            <label>Vị trí:</label>
+                            <select id="sensor-location" required>
+                                <option value="1">Trạm 1 (Phòng Lab)</option>
+                                <option value="2">Trạm 2 (Tòa A4)</option>
+                            </select>
+                            <label>Loại cảm biến:</label>
+                            <input type="text" id="sensor-type" required>
+                            <label>Ngưỡng cảnh báo(ppm):</label>
+                            <input type="text" id="sensor-threshold" required>
+                            <label>Đơn vị:</label>
+                            <input type="text" id="sensor-donvi" required>
+                            <div class="modal-buttons">
+                                <button type="submit" class="save-btn">Lưu</button>
+                                <button type="button" id="cancel-add-sensor" class="cancel-btn">Hủy</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Modal chỉnh sửa cảm biến -->
+                <div id="edit-sensor-modal" class="modal">
+                    <div class="modal-content">
+                        <h2>Chỉnh sửa cảm biến</h2>
+                        <form id="edit-sensor-form">
+                            <label>ID Cảm biến:</label>
+                            <input type="text" id="edit-sensor-id" readonly>
+                            <label>Tên cảm biến:</label>
+                            <input type="text" id="edit-sensor-name" required>
+                            <label>Vị trí:</label>
+                            <select id="edit-sensor-location" required>
+                                <option value="1">Trạm 1 (Phòng Lab)</option>
+                                <option value="2">Trạm 2 (Tòa A4)</option>
+                            </select>
+                            <label>Loại cảm biến:</label>
+                            <input type="text" id="edit-sensor-type" required>
+                            <label>Ngưỡng cảnh báo(ppm):</label>
+                            <input type="text" id="edit-sensor-threshold" required>
+                            <label>Đơn vị:</label>
+                            <input type="text" id="edit-sensor-donvi" required>
+                            <div class="modal-buttons">
+                                <button type="submit" class="save-btn">Lưu</button>
+                                <button type="button" id="cancel-edit-sensor" class="cancel-btn">Hủy</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Modal xác nhận xóa cảm biến -->
+                <div id="delete-sensor-modal" class="modal">
+                    <div class="modal-content">
+                        <h2>Xóa cảm biến</h2>
+                        <p id="delete-sensor-message"></p>
+                        <div class="modal-buttons">
+                            <button type="button" id="confirm-delete-sensor" class="delete-btn">Xóa</button>
+                            <button type="button" id="cancel-delete-sensor" class="cancel-btn">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+
+
+    <script>
+        // Thêm lớp 'active' cho mục "Giám sát" khi người dùng truy cập trang này
+        document.getElementById("user-link").classList.add("active");
+    </script>
+    <script type="module" src="../assets/js/quanlydevice.js"></script>
+
+</body>
+
+</html>

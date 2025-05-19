@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giám sát tram 2</title>
+    <link rel="stylesheet" href="../assets/css/style_giamsat2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    <!-- Thêm vào trong thẻ head của file HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <a href="menu.html">
+                <img src="Logo-Dai-Hoc-Giao-Thong-Van-Tai-UTC.webp" alt="Logo" />
+            </a>
+            <span class="logo-text">HỆ THỐNG GIÁM SÁT CHẤT LƯỢNG KHÍ THẢI</span>
+
+        </div>
+        <!-- Menu -->
+        <nav class="menu">
+            <a href="home.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <div class="subnav">
+                <button class="subnavbtn" id="monitoring-link"><i class="fas fa-eye"></i> Giám sát <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="giamsat1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="giamsat2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-cogs"></i> Điều khiển <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="dieukhien1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="dieukhien2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-user-cog"></i> Quản lý <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="quanlyuser.html">Người dùng</a>
+                    <a href="device.html">Thiết bị</a>
+                    <a href="report.html">Báo cáo</a>
+                </div>
+            </div>
+            <a href="alert.html"><i class="fas fa-exclamation-triangle"></i> Cảnh báo</a>
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            <div class="user-role-container">
+                <i class="fas fa-user-tag"></i>
+                <span id="user-role"></span>
+
+            </div>
+        </nav>
+    </header>
+    <!-- Container -->
+
+    <div class="container">
+        <div class="tram1">
+            <h1>Trạm 2 - Tòa A4 - ĐHGTVT</h1>
+        </div>
+        <!-- Thông số cảm biến và Thống kê -->
+        <div class="sensor-stats-container">
+            <!-- Giá trị cảm biến -->
+            <div class="sensor-values">
+                <h2>Thông số cảm biến thời gian thực</h2>
+                <p><strong>Thông số khí CO:</strong> <span id="co-value">Đang nhận...</span></p>
+                <p><strong>Thông số khí H2:</strong> <span id="h2-value">Đang nhận...</span></p>
+                <p><strong>Thông số khí NH3:</strong> <span id="nh3-value">Đang nhận...</span></p>
+                <!-- Hiển thị thời gian -->
+                <div class="datetime-container">
+                    <p id="datetime">Đang cập nhật ngày giờ...</p>
+                </div>
+            </div>
+
+            <!-- Thống kê -->
+            <div class="stats-container">
+                <h2>Thống kê</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <p>CO - Trung bình:</p>
+                        <span id="co-avg">Đang tính...</span>
+                    </div>
+                    <div class="stat-item">
+                        <p>CO - Lớn nhất:</p>
+                        <span id="co-max">Đang tính...</span>
+                    </div>
+                    <div class="stat-item">
+                        <p>CO - Nhỏ nhất:</p>
+                        <span id="co-min">Đang tính...</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <p>H2 - Trung bình:</p>
+                        <span id="h2-avg">Đang tính...</span>
+                    </div>
+                    <div class="stat-item">
+                        <p>H2 - Lớn nhất:</p>
+                        <span id="h2-max">Đang tính...</span>
+                    </div>
+                    <div class="stat-item">
+                        <p>H2 - Nhỏ nhất:</p>
+                        <span id="h2-min">Đang tính...</span>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <p>NH3 - Trung bình:</p>
+                        <span id="nh3-avg">Đang tính...</span>
+                    </div>
+                    <div class="stat-item">
+                        <p>NH3 - Lớn nhất:</p>
+                        <span id="nh3-max">Đang tính...</span>
+                    </div>
+                    <div class="stat-item">
+                        <p>NH3 - Nhỏ nhất:</p>
+                        <span id="nh3-min">Đang tính...</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Nội dung chính -->
+        <div class="content-row">
+            <h2>Biểu đồ thời gian thực</h2>
+            <!-- Biểu đồ thời gian thực -->
+            <div class="chart-container">
+                <canvas id="combinedChart"></canvas>
+            </div>
+        </div>
+        <div class="content-row">
+            <h2>Biểu đồ dự đoán trong 3h tới</h2>
+            <!-- Biểu đồ thời gian thực -->
+            <div class="chart-container">
+                <canvas id="predictChart"></canvas>
+            </div>
+        </div>       
+    </div>
+
+    <script>
+        document.getElementById("monitoring-link").classList.add("active");
+    </script>
+    <script type="module" src="../assets/js/giamsat2.js"></script>
+</body>
+
+</html>

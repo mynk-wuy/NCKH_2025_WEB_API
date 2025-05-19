@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chu</title>
+    <link rel="stylesheet" href="../assets/css/style_home.css"> <!-- Liên kết tới file CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="module" src="../assets/js/home.js"></script> <!-- Liên kết tới file JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/realtime-alerts.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <a href="menu.html">
+                <img src="Logo-Dai-Hoc-Giao-Thong-Van-Tai-UTC.webp" alt="Logo">
+            </a>
+            <span class="logo-text">HỆ THỐNG GIÁM SÁT CHẤT LƯỢNG KHÍ THẢI</span>
+        </div>
+        <!-- Menu -->
+        <nav class="menu">
+            <a href="home.html" id="home-link"><i class="fas fa-home"></i> Trang chủ</a>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-eye"></i> Giám sát <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="giamsat1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="giamsat2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-cogs"></i> Điều khiển <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="dieukhien1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="dieukhien2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-user-cog"></i> Quản lý <i
+                        class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="quanlyuser.html">Người dùng</a>
+                    <a href="device.html">Thiết bị</a>
+                    <a href="report.html">Báo cáo</a>
+                </div>
+            </div>
+            <a href="alert.html"><i class="fas fa-exclamation-triangle"></i> Cảnh báo</a>
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            <div class="user-role-container">
+                <i class="fas fa-user-tag"></i>
+                <span id="user-role"></span>
+
+            </div>
+        </nav>
+
+    </header>
+    <div class="container">
+        <!-- Khu vực bản đồ -->
+        <section class="map-container">
+            <h2>Vị trí các trạm giám sát</h2>
+            <div id="map"></div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="detailed-info">
+            <table class="station-table">
+                <thead>
+                    <tr>
+                        <th>Trạm</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
+                        <th>Cảm biến CO</th>
+                        <th>Cảm biến NH3</th>
+                        <th>Cảm biến H2</th>
+                        <th>Thời gian cập nhật</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script>
+        // Thêm lớp 'active' cho mục "Giám sát" khi người dùng truy cập trang này
+        document.getElementById("home-link").classList.add("active");
+    </script>
+
+
+</body>
+
+</html>

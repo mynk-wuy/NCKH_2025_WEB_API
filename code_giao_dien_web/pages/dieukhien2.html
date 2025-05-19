@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều Khiển - Trạm 2</title>
+    <link rel="stylesheet" href="../assets/css/style_dieukhien1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="menu.html">
+                <img src="Logo-Dai-Hoc-Giao-Thong-Van-Tai-UTC.webp" alt="Logo">
+            </a>
+            <span class="logo-text">HỆ THỐNG GIÁM SÁT CHẤT LƯỢNG KHÍ THẢI</span>
+        </div>
+        <nav class="menu">
+            <a href="home.html"><i class="fas fa-home"></i> Trang chủ</a>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-eye"></i> Giám sát <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="giamsat1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="giamsat2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn" id="control-link"><i class="fas fa-cogs"></i> Điều khiển <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="dieukhien1.html">Trạm 1(Phòng Lab)</a>
+                    <a href="dieukhien2.html">Trạm 2(Tòa A4)</a>
+                </div>
+            </div>
+            <div class="subnav">
+                <button class="subnavbtn"><i class="fas fa-user-cog"></i> Quản lý <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="quanlyuser.html">Người dùng</a>
+                    <a href="device.html">Thiết bị</a>
+                    <a href="report.html">Báo cáo</a>
+                </div>
+            </div>
+            <a href="alert.html"><i class="fas fa-exclamation-triangle"></i> Cảnh báo</a>
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            <div class="user-role-container">
+                <i class="fas fa-user-tag"></i>
+                <span id="user-role"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Điều Khiển - Trạm 2 (Tòa A4 - ĐHGTVT)</h1>
+            
+            <div class="mode-control">
+                <div class="mode-control-inner">
+                    <h2><i class="fas fa-sliders-h"></i> Chế Độ Điều Khiển</h2>
+                    <div class="mode-select">
+                        <label>
+                            <input type="radio" name="controlMode" value="manual" onchange="toggleMode('manual')"> Bằng tay
+                        </label>
+                        <label>
+                            <input type="radio" name="controlMode" value="auto" onchange="toggleMode('auto')"> Tự động
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-grid">
+                <div class="control-card">
+                    <div class="control-card-inner">
+                        <h2><i class="fas fa-fan"></i> Quạt</h2>
+                        <label class="switch">
+                            <input type="checkbox" id="fanSwitch" onchange="updateDeviceControl('fan', 'fanStatus')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-card">
+                    <div class="control-card-inner">
+                        <h2><i class="fas fa-lightbulb"></i> Đèn Cảnh Báo</h2>
+                        <label class="switch">
+                            <input type="checkbox" id="ledSwitch" onchange="updateDeviceControl('fan', 'fanStatus')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-section">
+                <h2><i class="fas fa-tachometer-alt"></i> Trạng Thái Hoạt Động</h2>
+                <div class="status-card">
+                    <div class="status-card-inner">
+                        <div class="status-item">
+                            <span class="status-label">Trạng thái kết nối MQTT:</span>
+                            <span class="status-value" id="mqttStatus">Đang kết nối...</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Chế độ hiện tại:</span>
+                            <span class="status-value" id="modeStatus">TỰ ĐỘNG</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Trạng thái quạt:</span>
+                            <span class="status-value status-off" id="fanStatus">TẮT</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Trạng thái đèn:</span>
+                            <span class="status-value status-off" id="ledStatus">TẮT</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Thời gian cập nhật:</span>
+                            <span class="status-value" id="updateTime"></span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../assets/js/dieukhien2.js"></script>
+</body>
+</html>

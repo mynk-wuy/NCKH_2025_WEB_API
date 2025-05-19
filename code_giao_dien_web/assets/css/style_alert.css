@@ -1,0 +1,335 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ebffdc;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a6f8ba;
+    padding: 5px 20px;
+    height: 100px;
+}
+
+/* Căn chỉnh logo và dòng chữ */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container a img {
+    height: 60px;
+    margin-right: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-container a:hover img {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.logo-text {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    font-family: serif, monospace;
+    font-weight: bold;
+}
+
+/* Menu styles - Modified to align right */
+.menu {
+    display: flex;
+    gap: 0px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto; /* Push menu to the right */
+    justify-content: flex-end; /* Align items to the right */
+}
+
+.menu a.active,
+.subnav .subnavbtn.active {
+    color: white;
+    background-color: #11d352;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu a,
+.subnav .subnavbtn {
+    font-size: 17px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 10px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+.menu a:hover,
+.subnav .subnavbtn:hover {
+    background-color: #11d352;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu a i,
+.subnav .subnavbtn i {
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+/* Subnav container */
+.subnav {
+    position: relative;
+    display: inline-block;
+}
+
+/* Subnav button */
+.subnav .subnavbtn {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Style the subnav content - positioned absolute */
+.subnav-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Style the subnav links */
+.subnav-content a {
+    font-size: 13px;
+    color: #333;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add a background color on hover */
+.subnav-content a:hover {
+    background-color: #f1f1f1;
+    color: #4CAF50;
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+    display: block;
+}
+
+/* Hiệu ứng mũi tên khi hover */
+.subnavbtn i.fa-caret-down {
+    transition: transform 0.3s ease;
+}
+
+.subnav:hover .subnavbtn i.fa-caret-down {
+    transform: rotate(180deg);
+}
+
+/* Modified user role container */
+.user-role-container {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px; /* Space between last menu item and user role */
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #555;
+}
+
+.user-role-container i {
+    margin-right: 5px;
+    color: #007bff;
+}
+
+#user-station {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* ----------------------------------------------------------------- */
+/* -------------------------- MAIN CONTENT ------------------------- */
+
+.container {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    min-height: 800px;
+   
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    padding-top: 5px;
+}
+
+/* Real-time alerts */
+.real-time-alerts h2,
+.search-alerts h2 {
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+
+}
+
+#alert-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#alert-table th,
+#alert-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#alert-table th {
+    background-color: #1a211a;
+    color: white;
+}
+
+#alert-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Search alerts */
+.search-alerts input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-alerts button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-alerts button:hover {
+    background-color: #45a049;
+}
+.real-time-alerts {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.real-time-alerts h2 {
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#alert-table-realtime {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+#alert-table-realtime thead {
+    background-color: #343a40;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+#alert-table-realtime th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+#alert-table-realtime tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+}
+
+#alert-table-realtime tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#alert-table-realtime td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+/* Màu sắc theo mức độ cảnh báo */
+.alert-critical {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.alert-warning {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.alert-info {
+    color: #17a2b8;
+    font-weight: bold;
+}
+
+/* Hiệu ứng cho hàng mới thêm */
+.new-alert-row {
+    animation: highlightRow 2s ease-out;
+}
+
+@keyframes highlightRow {
+    0% { background-color: rgba(220, 53, 69, 0.3); }
+    100% { background-color: transparent; }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    #alert-table-realtime {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .real-time-alerts {
+        padding: 10px;
+    }
+    
+    #alert-table-realtime th, 
+    #alert-table-realtime td {
+        padding: 8px 10px;
+    }
+}
